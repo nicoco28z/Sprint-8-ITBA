@@ -21,7 +21,7 @@ export default function PagosPage() {
         <Button>Nuevo Pago</Button>
       </Box>
 
-      <VStack display="flex" pr='25%' pt="10px" pb='20px'>
+      <VStack display="flex" pr='25%' pt="10px" pb='20px' >
           <Heading size="md">Pagos por vencer</Heading>
           <Button>Agregar un servicio</Button>
       </VStack>
@@ -32,8 +32,8 @@ export default function PagosPage() {
             borderRadius="10px"
             flexWrap="wrap"
             justifyContent="right"
-            spacing={6}
-          >
+            spacing={6}>
+
            <PagosCard name="Factura de Luz" price={1750} />
            <PagosCard name="Factura del Agua" price={2000} />
            <PagosCard name="Club Sanfer" price={2500} />

@@ -57,7 +57,6 @@ function LoginHeader() {
   return (
     <Box textAlign="center">
       <Heading>Inicia sesión en tu cuenta</Heading>
-      
     </Box>
   );
 }
