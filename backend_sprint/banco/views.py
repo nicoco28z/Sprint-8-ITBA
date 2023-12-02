@@ -29,6 +29,14 @@ class UserDetailView(View):
 
         except CustomUser.DoesNotExist:
             return HttpResponseNotFound('Cuenta no encontrada')
+    
+    def put(self, req, user_id):
+        try:
+            user = CustomUser.objects.get(id=user_id)
+            user.__dict__.update(req.data)
+            user.save()
+        except:
+            return Response({'failed': 'Error de servidor'}, status=status.HTTP_500_SERVER_ERROR)
 
 
 # Login VIEW (Recibe por body username y password, y utiliza la 
@@ -152,3 +160,4 @@ class TarjetaView(APIView):
                 return Response({'detail': 'No puede agregar mas tarjetas'}, status=status.HTTP_404_NOT_FOUND) #Esto sería un 500: Server error
         except CustomUser.DoesNotExist:
             return HttpResponseNotFound({'failed' : 'No se encontró el cliente'})
+        

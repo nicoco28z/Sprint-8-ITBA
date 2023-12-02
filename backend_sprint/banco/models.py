@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 class Sucursal(models.Model):
     id_sucursal = models.AutoField(primary_key=True)
     direccion = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=50)
     provincia = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=100)
 
@@ -23,7 +24,7 @@ class CustomUser(AbstractUser):
     sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE, null=True, blank=True)
     groups = models.ManyToManyField(Group, related_name='customuser_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='customuser_set', blank=True)
-    tipo = models.ForeignKey(Tipo_Cliente, on_delete=models.DO_NOTHING) 
+    tipo = models.ForeignKey(Tipo_Cliente, on_delete=models.DO_NOTHING, null=True) 
 
     def __str__(self):
         return self.username
