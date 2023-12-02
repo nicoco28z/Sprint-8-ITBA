@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Heading, Text, Button } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Heading, Text, Button, Accordion, AccordionIcon, AccordionButton, AccordionItem, AccordionPanel } from "@chakra-ui/react";
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -50,9 +50,41 @@ const MyCarousel = () => {
                 Bienvenido a PILLARBANK
             </Heading>
             <br />
-            <Text textAlign='right'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, iste voluptatum ex ab itaque soluta quos sint quaerat nesciunt dolore obcaecati aspernatur quis qui autem, voluptate excepturi delectus quia mollitia quod tenetur pariatur, amet corrupti atque nisi! Quo animi quas, deserunt numquam totam dicta ea? Aliquam tenetur minus illum explicabo nostrum, assumenda quasi quae animi mollitia saepe et sit culpa qui voluptatem odio porro recusandae laudantium! Commodi voluptatem, id nobis esse perspiciatis nisi delectus quisquam at laudantium atque recusandae soluta?
-            </Text>
+            <Accordion allowToggle>
+  <AccordionItem>
+    <h2>
+      <AccordionButton>
+        <Box as="span" flex='1' textAlign='left'>
+          Section 1 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
+    <AccordionPanel pb={4}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </AccordionPanel>
+  </AccordionItem>
+
+  <AccordionItem>
+    <h2>
+      <AccordionButton>
+        <Box as="span" flex='1' textAlign='left'>
+          Section 2 title
+        </Box>
+        <AccordionIcon />
+      </AccordionButton>
+    </h2>
+    <AccordionPanel pb={4}>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat.
+    </AccordionPanel>
+  </AccordionItem>
+</Accordion>
             {isLogged ? null : <Link to='/login'><Button mt="24" w="200px" colorScheme="teal">Ingresá</Button></Link>}
         </GridItem>
       <GridItem w="45rem" textAlign="center" mt="15px">
@@ -68,7 +100,7 @@ const MyCarousel = () => {
           ))}
         </Carousel>
       </GridItem>
-      </Grid>
+    </Grid>
   );
 };
 
