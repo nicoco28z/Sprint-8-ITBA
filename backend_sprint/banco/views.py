@@ -81,6 +81,21 @@ class CuentaView(APIView):
         
         except Cuenta.DoesNotExist:
             return HttpResponseNotFound({'failed': 'No se encontro la cuenta'})
+        
+    def post(self, req, idCliente):
+
+        try:
+            user = CustomUser.objects.get(id = idCliente)
+            cuentas = len((Cuenta.objects.all(cliente=user)))
+
+            if (user.tipo.maxCuentas > cuentas):
+                cuenta = Cuenta(saldo=0.0, cliente=user, principal=False)
+                cuenta.save()
+                return Response({'success' : 'Cuenta creada correctamente'}, status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response({'detail': 'No puede crear mas cuentas'}, status=status.HTTP_404_NOT_FOUND) #Esto sería un 500: Server error
+        except CustomUser.DoesNotExist:
+            return HttpResponseNotFound({'failed' : 'No se encontró el cliente'})
 
 class CuentaClienteView(APIView):
     def get(self, req, cliente):
@@ -93,5 +108,47 @@ class CuentaClienteView(APIView):
                 return Response({'failed': 'No se encontraron cuentas para el usuario.'}, status=status.HTTP_404_NOT_FOUND)
         except Cuenta.DoesNotExist:
             return HttpResponseNotFound({'failed': 'No se encontro la cuenta'})
+        
 
+"""Get de todas las tarjetas de un cliente"""
+class TarjetasView(APIView):
+    def get(slef, req, idCliente):
+        try:
+            cliente = CustomUser.objects.get(pk=idCliente)
+            tarjetas = Tarjeta.objects.filter(cliente = cliente)
+            if tarjetas:
+                serializer = TarjetaSerializer(tarjetas, many=True)
+                return Response(serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response({'failed': 'No se encontraron tarjetas para el usuario.'}, status=status.HTTP_404_NOT_FOUND)
+        except CustomUser.DoesNotExist:
+            return HttpResponseNotFound({'failed': 'No se encontro el cliente'})
 
+class TarjetaView(APIView):
+    def get(self, req, nro_tarjeta):
+        try:
+            tarjeta = Tarjeta.objects.get(nro_tarjeta = nro_tarjeta)
+            serializer = TarjetaSerializer(tarjeta)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        
+        except Tarjeta.DoesNotExist:
+            return HttpResponseNotFound({'failed': 'No se encontro la tarjeta'})
+        
+
+    def post(self, req, idCliente):
+        try:
+            user = CustomUser.objects.get(id = idCliente)
+            tarjetas = len((Tarjeta.objects.all(cliente=user)))
+            nro_tarjeta = req.data.get('nro_tarjeta')
+            cvv = req.data.get('cvv')
+            banco = req.data.get('banco')
+            fecha_emision = req.data.get('fecha_emision')
+            fecha_vencimiento = req.data.get('fecha_vencimiento')
+            if (user.tipo.maxTarjetas > tarjetas):
+                tarjeta = Tarjeta(nro_tarjeta=nro_tarjeta, cvv=cvv, banco=banco, fecha_emision=fecha_emision, fecha_vencimiento=fecha_vencimiento, cliente=user)
+                tarjeta.save()
+                return Response({'success' : 'Tarjeta agregada correctamente'}, status=status.HTTP_204_NO_CONTENT)
+            else:
+                return Response({'detail': 'No puede agregar mas tarjetas'}, status=status.HTTP_404_NOT_FOUND) #Esto sería un 500: Server error
+        except CustomUser.DoesNotExist:
+            return HttpResponseNotFound({'failed' : 'No se encontró el cliente'})

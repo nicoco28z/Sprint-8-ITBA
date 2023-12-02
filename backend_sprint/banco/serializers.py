@@ -27,3 +27,8 @@ class CuentaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cuenta
         fields = ('nro_cuenta', 'saldo', 'cliente', 'principal')
+
+class TarjetaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tarjeta
+        fields = ('nro_tarjeta', 'cvv', 'cliente', 'banco', 'fecha_emision', 'fecha_vencimiento')
