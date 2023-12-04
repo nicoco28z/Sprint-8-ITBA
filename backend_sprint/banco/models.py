@@ -13,6 +13,7 @@ from django.db.models.signals import post_save, pre_save
 class Sucursal(models.Model):
     id_sucursal = models.AutoField(primary_key=True)
     direccion = models.CharField(max_length=255)
+    nombre = models.CharField(max_length=50)
     provincia = models.CharField(max_length=100)
     ciudad = models.CharField(max_length=100)
 
@@ -35,9 +36,11 @@ class CustomUser(AbstractUser):
     tipo_cliente = models.ForeignKey(Tipo_Cliente, on_delete=models.CASCADE, null=True)
     groups = models.ManyToManyField(Group, related_name='customuser_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='customuser_set', blank=True)
+    tipo = models.ForeignKey(Tipo_Cliente, on_delete=models.DO_NOTHING, null=True) 
 
     def __str__(self):
         return self.username
+    
 
 class Cuenta(models.Model):
     nro_cuenta = models.AutoField(primary_key=True)
@@ -47,6 +50,14 @@ class Cuenta(models.Model):
 
     def __str__(self):
         return f"{self.nro_cuenta}: {self.saldo}"
+    
+class Tarjeta(models.Model):
+    nro_tarjeta = models.DecimalField(primary_key=True, max_digits=15) #CONTROLAR LONGITUD EN FRONT
+    cvv = models.DecimalField(max_digits=3) #CONTROLAR LONGITUD EN FRONT
+    cliente = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    banco = models.CharField(max_length=50) #Sería el banco de la tarjeta (Mastercard / Amex / Santadner / etc)
+    fecha_emision = models.DateField()
+    fecha_vencimiento = models.DateField()
 
 class Prestamo(models.Model):
     ESTADO_CHOICES = [
