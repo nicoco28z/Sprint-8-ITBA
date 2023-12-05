@@ -15,4 +15,8 @@ urlpatterns = [
     path('tarjetas/<int:idCliente>', TarjetasView.as_view(), name='tarjetas'),
     path('tarjeta/<int:nro_tarjeta>', TarjetaView.as_view(), name='tarjeta-detail'),
     path('tarjeta/<int:idCliente>/nueva', TarjetaView.as_view(), name='nueva-tarjeta'),
+    path('prestamos/', ListarPrestamosView.as_view(), name='listar_libros'),
+    path('prestamo/solicitar/', SolicitarPrestamoView.as_view(), name='solicitar_prestamo'),
+    path('prestamo/aprobar/<int:pk>/', AprobarPrestamoView.as_view(), name='aprobar_prestamo'),
+    path('prestamo/desaprobar/<int:pk>/', DesaprobarPrestamoView.as_view(), name='desaprobar_prestamo')
 ]

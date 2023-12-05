@@ -9,6 +9,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.decorators import authentication_classes
 from rest_framework.generics import CreateAPIView
+from rest_framework.exceptions import NotFound
 
 from .models import *
 from .serializers import *
@@ -25,7 +26,18 @@ class UserDetailView(View):
         try:
             user = CustomUser.objects.get(id=user_id)
             serializer = CustomUserSerializer(user)
-            return JsonResponse(serializer.data, safe=False)
+            data = serializer.data
+
+            tipo_cliente_info = None
+            if user.tipo_cliente:
+                tipo_cliente_info = {
+                    'nombre': user.tipo_cliente.nombre,
+                    'maxCuentas': user.tipo_cliente.maxCuentas,
+                    'maxTarjetas': user.tipo_cliente.maxTarjetas,
+                    'limitePrestamo': user.tipo_cliente.limitePrestamo
+                }
+            data['tipo_cliente'] = tipo_cliente_info
+            return JsonResponse(data, safe=False)
 
         except CustomUser.DoesNotExist:
             return HttpResponseNotFound('Cuenta no encontrada')
@@ -55,7 +67,18 @@ class LoginView(APIView):
         if user is not None:
             login(req, user)
             serializer = CustomUserSerializer(user)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            data = serializer.data
+
+            tipo_cliente_info = None
+            if user.tipo_cliente:
+                tipo_cliente_info = {
+                    'nombre': user.tipo_cliente.nombre,
+                    'maxCuentas': user.tipo_cliente.maxCuentas,
+                    'maxTarjetas': user.tipo_cliente.maxTarjetas,
+                    'limitePrestamo': user.tipo_cliente.limitePrestamo
+                }
+            data['tipo_cliente'] = tipo_cliente_info
+            return Response(data, status=status.HTTP_200_OK)
         else:
             return Response({'detail': 'Credenciales incorrectas'}, status=status.HTTP_401_UNAUTHORIZED)
 
@@ -161,3 +184,57 @@ class TarjetaView(APIView):
         except CustomUser.DoesNotExist:
             return HttpResponseNotFound({'failed' : 'No se encontró el cliente'})
         
+class ListarPrestamosView(APIView):
+    def get(self, req):
+        prestamos = Prestamo.objects.all()
+        serializer = PrestamoSerializer(prestamos, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+@authentication_classes([])
+@method_decorator(csrf_exempt, name='dispatch')
+class SolicitarPrestamoView(APIView):
+    def post(self, request, *args, **kwargs):
+        try:
+            serializer = PrestamoSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+
+                # Puedes personalizar la respuesta de éxito según tus necesidades
+                return Response({'message': 'Préstamo creado exitosamente'}, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except ValueError as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+
+@authentication_classes([])
+@method_decorator(csrf_exempt, name='dispatch')
+class AprobarPrestamoView(APIView):
+    def put(self, request, pk, *args, **kwargs):
+        prestamo = self.get_prestamo(pk)
+        if prestamo.estado == 'Pendiente':
+            prestamo.estado = 'Aprobado'
+            prestamo.save()
+            serializer = PrestamoSerializer(prestamo)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'El préstamo no está pendiente de aprobación'}, status=status.HTTP_400_BAD_REQUEST)
+
+    def get_prestamo(self, pk):
+        return Prestamo.objects.get(pk=pk)
+
+@authentication_classes([])
+@method_decorator(csrf_exempt, name='dispatch')
+class DesaprobarPrestamoView(APIView):
+    def put(self, request, pk, *args, **kwargs):
+        prestamo = self.get_prestamo(pk)
+        if prestamo.estado == 'Pendiente':
+            prestamo.estado = 'Desaprobado'
+            prestamo.save()
+            serializer = PrestamoSerializer(prestamo)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response({'error': 'El préstamo no está pendiente de aprobación'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def get_prestamo(self, pk):
+        return Prestamo.objects.get(pk=pk)
