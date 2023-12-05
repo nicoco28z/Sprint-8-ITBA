@@ -6,7 +6,7 @@ function CardAccount({cuenta, cuentas, setCuentas, setActualizador}){
             <CardHeader>
                 <Stack flexDir="row" justify="space-between">
                     <Text fontSize='2xl'>{cuenta.typeAccount}</Text>
-                    <Button borderRadius="100%" colorScheme='teal'  onClick={() => deleteAccount(cuenta.numberAccount, cuentas, setCuentas, setActualizador)}>X</Button>
+                    <Button borderRadius="100%" bg='#d4af37'  onClick={() => deleteAccount(cuenta.numberAccount, cuentas, setCuentas, setActualizador)}>X</Button>
                 </Stack>
                 </CardHeader>
             <Divider colorScheme="blackAlpha"/>
@@ -21,7 +21,7 @@ function CardAccount({cuenta, cuentas, setCuentas, setActualizador}){
                 </Stack>
             </CardBody>
             <CardFooter justify="end">
-                <Button colorScheme='teal' variant='outline'>Transferir</Button>
+                <Button bg='#d4af37' variant='outline'>Transferir</Button>
             </CardFooter>
         </Card>
     )

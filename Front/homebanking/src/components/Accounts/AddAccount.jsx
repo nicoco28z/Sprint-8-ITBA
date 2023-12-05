@@ -17,7 +17,7 @@ function AddAccount({cuentas, setCuentas, setActualizador}){
                 <InputLeftAddon children='$' />
                 <Input placeholder='Cantidad Cuenta' value={inpMon} onChange={e => setInpMon(e.target.value)}/>
             </InputGroup>
-            <Button colorScheme='teal' onClick={() => addAccount(select, inpMon, cuentas, setCuentas, setActualizador)}>Agregar Cuenta</Button>
+            <Button bg='#d4af37' onClick={() => addAccount(select, inpMon, cuentas, setCuentas, setActualizador)}>Agregar Cuenta</Button>
         </SimpleGrid>
     )
 }

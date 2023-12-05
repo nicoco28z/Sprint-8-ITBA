@@ -31,7 +31,7 @@ function PanelConvertion(){
                     {monCodes(checked)}
                 </Select>
                 {/*Boton que ejecuta la funcion de la api*/}
-                <Button colorScheme='teal' size='sm' onClick={async () => await accederAPI(moneda1, moneda2, cantidad, setConversion)}>Convertir</Button>
+                <Button bg='#d4af37' size='sm' onClick={async () => await accederAPI(moneda1, moneda2, cantidad, setConversion)}>Convertir</Button>
                 {/*Input deshabilitado para resultado*/}
                 <InputGroup>
                     <InputLeftAddon children='$' />

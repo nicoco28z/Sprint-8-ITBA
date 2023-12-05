@@ -31,7 +31,7 @@ function LoginArea() {
       width="full"
       align="Center"
       justifyContent="center"
-      bg="teal"
+      bg="#129490"
     >
       <Box
         borderWidth={1}
@@ -106,22 +106,22 @@ function LoginForm() {
 
         <HStack justifyContent="space-between" mt={4}>
           <Box>
-            <Checkbox defaultChecked colorScheme="teal">
+            <Checkbox defaultChecked bg="##129490">
               Recuerdame
             </Checkbox>
           </Box>
           <Box>
-            <Link color="teal">Olvidaste tu contraseña?</Link>
+            <Link bg="#d4af37">Olvidaste tu contraseña?</Link>
           </Box>
         </HStack>
         <br />
-        <Button colorScheme="teal" width="full" mt="4" type="submit">
+        <Button bg="#d4af37" width="full" mt="4" type="submit">
           Iniciar Sesión
         </Button>
         <br />
         <br />
-        <Button colorScheme="teal" width="full" mt="4">
-        <Link to="/register" color="teal" fontWeight="bold" >Crea una cuenta</Link>
+        <Button bg="#d4af37" width="full" mt="4">
+        <Link to="/register" bg="#d4af37" fontWeight="bold" >Crea una cuenta</Link>
         </Button>
         {error && (
           <Alert status="error">
