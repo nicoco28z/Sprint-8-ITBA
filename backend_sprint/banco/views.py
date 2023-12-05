@@ -30,10 +30,11 @@ class UserDetailView(View):
         except CustomUser.DoesNotExist:
             return HttpResponseNotFound('Cuenta no encontrada')
     
+    """Esto permite actualizar todos los campos, el fornt solo permite actualizar los campos correspondientes"""
     def put(self, req, user_id):
         try:
             user = CustomUser.objects.get(id=user_id)
-            user.__dict__.update(req.data)
+            user.__dict__.update(req.data) #EN EL FRONT DEBEN USAR LOS MISMOS NOMBRES :[
             user.save()
         except:
             return Response({'failed': 'Error de servidor'}, status=status.HTTP_500_SERVER_ERROR)
@@ -161,3 +162,11 @@ class TarjetaView(APIView):
         except CustomUser.DoesNotExist:
             return HttpResponseNotFound({'failed' : 'No se encontró el cliente'})
         
+class SucursalesView(APIView):
+    def get(self, req):
+        try:
+            sucursales = Sucursal.objects.all()
+            serializer = SucursalSerializer(sucursales)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except:
+            return HttpResponseNotFound({'error' : 'Error al buscar sucursales'}) 
