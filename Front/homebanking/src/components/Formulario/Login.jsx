@@ -31,7 +31,7 @@ function LoginArea() {
       width="full"
       align="Center"
       justifyContent="center"
-      bg="teal"
+      bg="#d6f2e6"
     >
       <Box
         borderWidth={1}
@@ -72,15 +72,18 @@ function LoginForm() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Si el usuario y la contraseña son "admin" y "password"
-    if (user === "admin" && password === "admin") {
-      // Inicio de sesión exitoso, redirigir a otra página
-      signIn();
-      navigate("/home");
-    } else {
-      setError(true);
+    const userValido = login(user, password)
+    error ?? setError(true)
+  
+    if (data?.is_staff == 1 ) {
+    signIn()
+    navigate("/empleado")
     }
-  };
+    else {
+    signIn()
+    navigate("/home")
+    }
+  }
 
   return (
     <Box my={8} textAlign="left">
@@ -106,22 +109,22 @@ function LoginForm() {
 
         <HStack justifyContent="space-between" mt={4}>
           <Box>
-            <Checkbox defaultChecked colorScheme="teal">
+            <Checkbox defaultChecked bg="#d6f2e6">
               Recuerdame
             </Checkbox>
           </Box>
           <Box>
-            <Link color="teal">Olvidaste tu contraseña?</Link>
+            <Link bg="#349f77">Olvidaste tu contraseña?</Link>
           </Box>
         </HStack>
         <br />
-        <Button colorScheme="teal" width="full" mt="4" type="submit">
+        <Button bg="#349f77" width="full" mt="4" type="submit">
           Iniciar Sesión
         </Button>
         <br />
         <br />
-        <Button colorScheme="teal" width="full" mt="4">
-        <Link to="/register" color="teal" fontWeight="bold" >Crea una cuenta</Link>
+        <Button bg="#349f77" width="full" mt="4">
+        <Link to="/register" bg="#349f77" fontWeight="bold" >Crea una cuenta</Link>
         </Button>
         {error && (
           <Alert status="error">

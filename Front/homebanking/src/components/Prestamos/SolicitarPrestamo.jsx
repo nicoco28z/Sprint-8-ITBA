@@ -30,7 +30,7 @@ import {
         width="full"
         align="Center"
         justifyContent="center"
-        bg="teal"
+        bg="#d6f2e6"
       >
         <Box
           borderWidth={1}
@@ -61,10 +61,7 @@ import {
   
   // Formulario de Login
   function PrestamoForm() {
-    const [nombre, setNombre] = useState("");
-    const [fecha, setFecha] = useState("");
     const [dni, setDni] = useState("");
-    const [correo, setCorreo] = useState("");
     const [cantidadPrestamo, setcantidadPrestamo] = useState("");
     const [tipoCliente, settipoCliente] = useState("");
   
@@ -76,39 +73,12 @@ import {
       <Box my={8} textAlign="left">
         <form onSubmit={handleRegister}>
           <FormControl isRequired>
-            <FormLabel>Nombre</FormLabel>
-            <Input
-              type="nombre"
-              placeholder="Escribe tu Nombre"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            ></Input>
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Fecha</FormLabel>
-            <Input
-              type="fecha"
-              placeholder="Escribe Fecha"
-              value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
-            ></Input>
-          </FormControl>
-          <FormControl isRequired>
             <FormLabel>DNI</FormLabel>
             <Input
               type="dni"
               placeholder="Escribe tu DNI"
               value={dni}
               onChange={(e) => setDni(e.target.value)}
-            ></Input>
-          </FormControl>
-          <FormControl isRequired>
-            <FormLabel>Correo</FormLabel>
-            <Input
-              type="correo"
-              placeholder="Escribe tu Correo"
-              value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
             ></Input>
           </FormControl>
           <FormControl isRequired>
@@ -132,7 +102,7 @@ import {
   
           <HStack justifyContent="space-between" mt={4}>
           </HStack>
-          <Button colorScheme="teal" width="full" mt="4" type="submit">
+          <Button bg="#349f77" width="full" mt="4" type="submit">
             Solicitar
           </Button>
         </form>

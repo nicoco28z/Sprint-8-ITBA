@@ -8,12 +8,12 @@ import logo from "./logo.png";
 const Navbar = () => {
   return (
     <>
-    <Box bg="#008080" p={4} color="black">
+    <Box bg="#248c5f" p={4} >
       <Flex>
         <Box alignItems="center" display="flex">
-          <Image src={logo} alt="Logo" w={16} h={16} mr={2} />
-          <Link as={RouterLink} to="/home" fontSize="40" fontWeight="bold">
-            PillarBank
+          <Image src={logo} alt="Logo" w={{ base: 12, md: 16 }} h={{ base: 12, md: 16 }} mr={2} />
+          <Link as={RouterLink} to="/home" fontSize={{ base: "xl", md: "2xl" }} fontWeight="bold" color="#ffffff">
+              PillarBank
           </Link>
         </Box>
         <Spacer />

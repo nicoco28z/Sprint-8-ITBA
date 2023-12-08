@@ -8,25 +8,29 @@ export default function TransferenciasPage() {
       <Heading textAlign="center" mt="10px">
         Transferencias
       </Heading>
-      <Box display="grid" textAlign="center" mt="2rem" p="20px">
+      <Box display="grid" textAlign="center" mt="1rem">
         <HStack justifyContent="center">
-          <Button colorScheme="teal" >Transferir con Alias, CBU o CVU</Button>
-          <Button colorScheme="teal" >Ingresar Dinero</Button>
+          <Button bg="#349f77" >Transferir con Alias, CBU o CVU</Button>
+          <Button bg="#349f77" >Ingresar Dinero</Button>
         </HStack>
       </Box>
+ 
       <Box ml="5rem">
-        <Heading size="md" textAlign="start">
+        <Heading size="md" textAlign="start" mt="25px">
           Transferir a contactos
         </Heading>
-        <Button colorScheme="teal" mt="5px">Agregar Contacto + </Button>
+
+        <Button bg="#349f77" mt="5px">Agregar Contacto + </Button>
+
         <SimpleGrid
-          spacing={4}
+          spacing={7}
           templateColumns="repeat(auto-fill, minmax(120px, 1fr))"
-          mt='10px'
-        >
+          mt='25px'>
           <TransferenciaCard name="Aldo Andres" />
           <TransferenciaCard name="Nicolas Colombo" />
           <TransferenciaCard name="Harold" />
+          <TransferenciaCard name="Lorezo Forchieri" />
+          <TransferenciaCard name="John Doe" />
         </SimpleGrid>
       </Box>
     </>

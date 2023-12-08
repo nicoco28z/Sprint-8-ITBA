@@ -15,7 +15,7 @@ export default function Sucursales() {
   //Está pensada para que los usuarios válidos puedan ver su información y editarla si asi lo quisiesen.
 
   return (
-    <Card maxWidth="400px" m="auto" height="70%" mt="5%">
+    <Card maxWidth="400px" m="auto" height="70%" mt="5%" shadow="dark-lg">
       <CardHeader>
         <Heading size="lg" textAlign="center">
           Nuestras Sucursales

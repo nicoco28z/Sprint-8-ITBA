@@ -5,19 +5,9 @@ import SolicitarPrestamo from "../components/Prestamos/SolicitarPrestamo";
 export default function Prestamos() {
     return (
         <>
-            <Card
-                direction={{ base: 'column', sm: 'row' }}
-                overflow='hidden'
-                variant='outline'
-                justifyContent="center"
-                align="center"
-                bg="teal"
-                >
-
-        <Stack>
-          <SolicitarPrestamo />
-        </Stack>
-      </Card>
-    </>
+          <Stack>
+            <SolicitarPrestamo />
+          </Stack> 
+        </>
   );
 }

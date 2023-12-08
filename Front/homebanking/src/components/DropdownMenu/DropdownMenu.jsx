@@ -8,7 +8,7 @@ const DropdownMenu = () => {
   const { isLogged, signOut } = useAuth();
 
   return (
-    <Menu>
+    <Menu >
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
         Menu
       </MenuButton>

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+document.body.style.backgroundColor = '#d6f2e6';
 root.render(
   <React.StrictMode>
     <App />
