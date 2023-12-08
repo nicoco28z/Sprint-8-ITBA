@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
   const auth = useProvideAuth();
 
   //Se usa useMemo para poder mantener el valor del usuario en toda la aplicación
-  const value = useMemo(() => (auth), [auth.isLogged]);
+  const value = useMemo(() => auth, [auth.isLogged]);
   return (
     <authContext.Provider value={value}>
       {useMemo(
@@ -47,3 +47,5 @@ function useProvideAuth() {
     signOut,
   };
 }
+
+
