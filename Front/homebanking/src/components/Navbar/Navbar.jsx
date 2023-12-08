@@ -8,7 +8,7 @@ import logo from "./logo.png";
 const Navbar = () => {
   return (
     <>
-    <Box bg="#008080" p={4} color="black">
+    <Box bg="#129490" p={4} color="black">
       <Flex>
         <Box alignItems="center" display="flex">
           <Image src={logo} alt="Logo" w={16} h={16} mr={2} />

@@ -116,7 +116,7 @@ const MyCarousel = () => {
                 </AccordionPanel>
               </AccordionItem>
             </Accordion>
-            {isLogged ? null : <Link to='/login'><Button mt="20" w="200px" colorScheme="teal">Ingresá</Button></Link>}
+            {isLogged ? null : <Link to='/login'><Button mt="20" w="200px" bg="#d4af37">Ingresá</Button></Link>}
         </GridItem>
       <GridItem w="45rem" textAlign="center" mt={20}>
         <Carousel autoPlay interval={4000} infiniteLoop>

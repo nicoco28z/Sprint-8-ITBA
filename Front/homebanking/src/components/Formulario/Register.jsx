@@ -31,7 +31,7 @@ function RegisterArea() {
       width="full"
       align="Center"
       justifyContent="center"
-      bg="teal"
+      bg="#129490"
     >
       <Box
         borderWidth={1}
@@ -139,7 +139,7 @@ function RegisterForm() {
 
         <HStack justifyContent="space-between" mt={4}>
         </HStack>
-        <Button colorScheme="teal" width="full" mt="4" type="submit">
+        <Button bg="#d4af37" width="full" mt="4" type="submit">
           Registrarme
         </Button>
         {error && (

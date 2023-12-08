@@ -10,7 +10,7 @@ function LoginPage() {
                 variant='outline'
                 justifyContent="center"
                 align="center"
-                bg="teal"
+                bg="#129490"
                 >
                 <Image
                     objectFit='cover'

@@ -15,7 +15,7 @@ export default function PerfilPage() {
   //Está pensada para que los usuarios válidos puedan ver su información y editarla si asi lo quisiesen.
 
   return (
-    <Card maxWidth="400px" m="auto" height="70%" mt="5%">
+    <Card maxWidth="400px" m="auto" height="70%" mt="5%" borderRadius={4} borderWidth={1} boxShadow="dark-lg"> 
       <CardHeader>
         <Heading size="lg" textAlign="center">
           Mi perfil
