@@ -1,8 +1,20 @@
-import { Box, Grid, GridItem, Heading, Text, Button, Accordion, AccordionIcon, AccordionButton, AccordionItem, AccordionPanel } from "@chakra-ui/react";
+import {
+  Box,
+  Grid,
+  GridItem,
+  Heading,
+  Text,
+  Button,
+  Accordion,
+  AccordionIcon,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+} from "@chakra-ui/react";
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import {useAuth} from '../../hooks/useAuth'
+import { useAuth } from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 
 
@@ -44,15 +56,19 @@ const MyCarousel = () => {
   const {isLogged} = useAuth();
 
   return (
-    <Grid templateColumns='repeat(2, 1fr)' gap={6} align="center" justifyContent={"center"}>
-        <GridItem textAlign='center' mt='5rem'>
-            <Heading textAlign='center' mt={20} fontSize={50} mb={5}>
-                Bienvenido a PILLARBANK
-            </Heading>
-            <br />
-            <Accordion allowToggle>
+    <Grid
+      templateColumns={{ base: "22rem", md: "repeat(2, 1fr)" }}
+      gap={6}
+      align="center"
+      justifyContent={"center"}
+    >
+      <GridItem textAlign="center" mt={{ base: "1rem", md: "2rem" }}>
+        <Heading textAlign="center" mt={20} fontSize={{ base: "xl", md: "4xl" }} mb={5}>
+          Bienvenido a PILLARBANK
+        </Heading>
+        <Accordion allowToggle width={{ base: "50%", md: "auto" }} mx="auto">
               <AccordionItem>
-                <h2>
+                <h2 >
                   <AccordionButton>
                     <Box as="span" flex='1' textAlign='center'>
                       ¿Quienes somos?
@@ -115,18 +131,20 @@ const MyCarousel = () => {
                   commodo consequat.
                 </AccordionPanel>
               </AccordionItem>
-            </Accordion>
-            {isLogged ? null : <Link to='/login'><Button mt="20" w="200px" bg="#d4af37">Ingresá</Button></Link>}
-        </GridItem>
-      <GridItem w="45rem" textAlign="center" mt={20}>
+              </Accordion>
+        {isLogged ? null : (
+          <Link to="/login">
+            <Button mt={{ base: "4", md: "20" }} w={{ base: "100%", md: "200px" }} bg="#349f77">
+              Ingresá
+            </Button>
+          </Link>
+        )}
+      </GridItem>
+      <GridItem w={{ base: "100%", md: "45rem" }} textAlign="center" mt={{ base: "4", md: "20" }}>
         <Carousel autoPlay interval={4000} infiniteLoop>
           {images.map((image, index) => (
             <div key={index}>
-              <img
-                src={image.url}
-                alt={image.alt}
-                style={{ width: image.width }}
-              />
+              <img src={image.url} alt={image.alt} style={{ maxWidth: "90%" }} />
             </div>
           ))}
         </Carousel>

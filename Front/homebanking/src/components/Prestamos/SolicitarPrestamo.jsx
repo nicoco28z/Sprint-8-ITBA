@@ -30,7 +30,7 @@ import {
         width="full"
         align="Center"
         justifyContent="center"
-        bg="#ebecf0"
+        bg="#d6f2e6"
       >
         <Box
           borderWidth={1}
@@ -102,7 +102,7 @@ import {
   
           <HStack justifyContent="space-between" mt={4}>
           </HStack>
-          <Button bg="#d4af37" width="full" mt="4" type="submit">
+          <Button bg="#349f77" width="full" mt="4" type="submit">
             Solicitar
           </Button>
         </form>

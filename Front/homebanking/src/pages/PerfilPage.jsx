@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 
 export default function PerfilPage() {
+  
 
   //Esta página por el momento se encuentra hardcodeada
   //Está pensada para que los usuarios válidos puedan ver su información y editarla si asi lo quisiesen.

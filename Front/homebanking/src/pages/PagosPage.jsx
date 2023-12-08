@@ -18,13 +18,13 @@ export default function PagosPage() {
       </Heading>
 
       <Box textAlign="center" mt="15px" mb="25px">
-        <Button bg="#d4af37" >Nuevo Pago</Button>
+        <Button bg="#349f77" >Nuevo Pago</Button>
       </Box>
 
       <Box>
         <VStack pr='25%' pt="10px" pb='20px' alignContent="center" mt="45px" justify="center">
             <Heading size="md">Pagos por vencer</Heading>
-            <Button bg="#d4af37">Agregar un servicio</Button>
+            <Button bg="#349f77">Agregar un servicio</Button>
         </VStack>
           <VStack>
             <HStack

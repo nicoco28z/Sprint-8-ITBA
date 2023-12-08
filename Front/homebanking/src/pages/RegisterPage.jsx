@@ -10,7 +10,7 @@ function RegisterPage() {
                 variant='outline'
                 justifyContent="center"
                 align="center"
-                bg="#129490"
+                bg="#d6f2e6"
                 >
                 <Image
                     objectFit='cover'

@@ -8,10 +8,10 @@ export default function TransferenciasPage() {
       <Heading textAlign="center" mt="10px">
         Transferencias
       </Heading>
-      <Box display="grid" textAlign="center" mt="1rem" p="20px">
+      <Box display="grid" textAlign="center" mt="1rem">
         <HStack justifyContent="center">
-          <Button bg="#d4af37" >Transferir con Alias, CBU o CVU</Button>
-          <Button bg="#d4af37" >Ingresar Dinero</Button>
+          <Button bg="#349f77" >Transferir con Alias, CBU o CVU</Button>
+          <Button bg="#349f77" >Ingresar Dinero</Button>
         </HStack>
       </Box>
  
@@ -20,7 +20,7 @@ export default function TransferenciasPage() {
           Transferir a contactos
         </Heading>
 
-        <Button bg="#d4af37" mt="5px">Agregar Contacto + </Button>
+        <Button bg="#349f77" mt="5px">Agregar Contacto + </Button>
 
         <SimpleGrid
           spacing={7}
