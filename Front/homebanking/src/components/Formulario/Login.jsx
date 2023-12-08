@@ -72,15 +72,18 @@ function LoginForm() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Si el usuario y la contraseña son "admin" y "password"
-    if (user === "admin" && password === "admin") {
-      // Inicio de sesión exitoso, redirigir a otra página
-      signIn();
-      navigate("/home");
-    } else {
-      setError(true);
+    const userValido = login(user, password)
+    error ?? setError(true)
+  
+    if (data?.is_staff == 1 ) {
+    signIn()
+    navigate("/empleado")
     }
-  };
+    else {
+    signIn()
+    navigate("/home")
+    }
+  }
 
   return (
     <Box my={8} textAlign="left">
