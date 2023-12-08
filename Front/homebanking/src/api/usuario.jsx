@@ -29,35 +29,6 @@ export default function useClientes() {
   return { data, isLoading, error };
 };
 
-export default function useClientes() {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  const url = `http://localhost:8000/usuarios/`
-
-  useEffect(() => {
-    const traerUsuarios = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Error al obtener los clientes del banco');
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    traerUsuarios();
-  }, [url]);
-
-  return { data, isLoading, error };
-};
-
 //CONTROLAR CON MANU ESTO
 export function newUser(usuario) {
   const [isLoading, setIsLoading] = useState(true);
@@ -92,26 +63,25 @@ export function newUser(usuario) {
   return { isLoading, error };
 };
 
-//ACCION puede ser solo "aprobar" o "desaprobar"
-export function editarPrestamo(prestamo, accion){
+export function editUser(usuario) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const url = `http://localhost:8000/prestamo/${accion}/${prestamo.id_prestamo}`
+  const url = `http://localhost:8000/usuarios/${usuario.id}`
 
   useEffect(() => {
-    const editarPrestamo = async () => {
+    const editarUsuario = async () => {
       try {
         const response = await fetch(url, {
           method: 'PUT',
-          body: {prestamo}, //Se envía como un JSON
+          body: {usuario}, //Se envía como un JSON
           headers: {
             "Content-type": "application/json; charset=UTF-8",
             "X-CSRFToken":"H836YinrbSOaOkQIY79eNZwAoiWT94ug"
           }
         });
         if (!response.ok) {
-          throw new Error('Error al intentar actualizar la solicitud de prestamo');
+          throw new Error('Error al actualizar el usuario');
         }
       } catch (error) {
         setError(error);
@@ -120,8 +90,9 @@ export function editarPrestamo(prestamo, accion){
       }
     };
 
-    editarPrestamo();
+    editarUsuario();
   }, [url]);
 
   return { isLoading, error };
-}
+};
+
