@@ -53,8 +53,7 @@ class UserDetailView(View):
 
 # Login VIEW (Recibe por body username y password, y utiliza la 
 # autenticacion de Django para devolver los datos del usuario)
-@authentication_classes([])
-@method_decorator(csrf_exempt, name='dispatch')
+
 class LoginView(APIView):
     def post(self, req):
         username = req.data.get('username')
@@ -85,8 +84,7 @@ class LoginView(APIView):
 
 # Register View (Recibe por body los datos requeridos para el registro, 
 # este mismo utilizar un serializer para hacer el registro)
-@authentication_classes([])
-@method_decorator(csrf_exempt, name='dispatch')
+
 class UserRegistrationView(CreateAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserRegistrationSerializer
@@ -190,8 +188,7 @@ class ListarPrestamosView(APIView):
         serializer = PrestamoSerializer(prestamos, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-@authentication_classes([])
-@method_decorator(csrf_exempt, name='dispatch')
+
 class SolicitarPrestamoView(APIView):
     def post(self, request, *args, **kwargs):
         try:
@@ -199,7 +196,6 @@ class SolicitarPrestamoView(APIView):
             if serializer.is_valid():
                 serializer.save()
 
-                # Puedes personalizar la respuesta de éxito según tus necesidades
                 return Response({'message': 'Préstamo creado exitosamente'}, status=status.HTTP_201_CREATED)
             else:
                 return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -207,8 +203,7 @@ class SolicitarPrestamoView(APIView):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
 
-@authentication_classes([])
-@method_decorator(csrf_exempt, name='dispatch')
+
 class AprobarPrestamoView(APIView):
     def put(self, request, pk, *args, **kwargs):
         prestamo = self.get_prestamo(pk)
@@ -223,8 +218,7 @@ class AprobarPrestamoView(APIView):
     def get_prestamo(self, pk):
         return Prestamo.objects.get(pk=pk)
 
-@authentication_classes([])
-@method_decorator(csrf_exempt, name='dispatch')
+
 class DesaprobarPrestamoView(APIView):
     def put(self, request, pk, *args, **kwargs):
         prestamo = self.get_prestamo(pk)
