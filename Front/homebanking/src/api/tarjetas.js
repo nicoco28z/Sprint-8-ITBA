@@ -29,7 +29,7 @@ export default function useTarjetas(clienteId) {
   return { data, isLoading, error };
 };
 
-export function newTarjeta(tarjeta, clienteId) {
+export function useNewTarjeta(tarjeta, clienteId) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 

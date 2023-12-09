@@ -1,18 +1,18 @@
 import { useState, useEffect } from 'react';
 
-export default function useClientes() {
+export default function usePrestamos() {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const url = `http://localhost:8000/usuarios/`
+  const url = `http://localhost:8000/prestamos/`
 
   useEffect(() => {
-    const traerUsuarios = async () => {
+    const traerPrestamos = async () => {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('Error al obtener los clientes del banco');
+          throw new Error('Error al obtener los prestamos del banco');
         }
         const jsonData = await response.json();
         setData(jsonData);
@@ -23,32 +23,32 @@ export default function useClientes() {
       }
     };
 
-    traerUsuarios();
+    traerPrestamos();
   }, [url]);
 
   return { data, isLoading, error };
 };
 
-//CONTROLAR CON MANU ESTO
-export function newUser(usuario) {
+//PRESTAMO: {monto, cliente, cuenta}
+export function useSolicitarPrestamo(monto, cliente, cuenta) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const url = `http://localhost:8000/api/registro`
+  const url = `http://localhost:8000/prestamo/solicitar`
 
   useEffect(() => {
-    const crearUsuario = async () => {
+    const crearPrestamo = async () => {
       try {
         const response = await fetch(url, {
           method: 'POST',
-          body: {usuario}, //Se envía como un JSON
+          body: {monto:monto, cliente:cliente, cuenta:cuenta}, //Se envía como un JSON
           headers: {
             "Content-type": "application/json; charset=UTF-8",
             "X-CSRFToken":"H836YinrbSOaOkQIY79eNZwAoiWT94ug"
           }
         });
         if (!response.ok) {
-          throw new Error('Error al crear el usuario');
+          throw new Error('Error al crear la solicitud de prestamo');
         }
       } catch (error) {
         setError(error);
@@ -57,31 +57,32 @@ export function newUser(usuario) {
       }
     };
 
-    crearUsuario();
+    crearPrestamo();
   }, [url]);
 
   return { isLoading, error };
 };
 
-export function editUser(usuario) {
+//ACCION puede ser solo "aprobar" o "desaprobar"
+export function useEditarPrestamo(prestamo, accion){
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const url = `http://localhost:8000/usuarios/${usuario.id}`
+  const url = `http://localhost:8000/prestamo/${accion}/${prestamo.id_prestamo}`
 
   useEffect(() => {
-    const editarUsuario = async () => {
+    const editarPrestamo = async () => {
       try {
         const response = await fetch(url, {
           method: 'PUT',
-          body: {usuario}, //Se envía como un JSON
+          body: {prestamo}, //Se envía como un JSON
           headers: {
             "Content-type": "application/json; charset=UTF-8",
             "X-CSRFToken":"H836YinrbSOaOkQIY79eNZwAoiWT94ug"
           }
         });
         if (!response.ok) {
-          throw new Error('Error al actualizar el usuario');
+          throw new Error('Error al intentar actualizar la solicitud de prestamo');
         }
       } catch (error) {
         setError(error);
@@ -90,9 +91,8 @@ export function editUser(usuario) {
       }
     };
 
-    editarUsuario();
+    editarPrestamo();
   }, [url]);
 
   return { isLoading, error };
-};
-
+}
