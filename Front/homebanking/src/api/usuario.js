@@ -1,98 +1,74 @@
-import { useState, useEffect } from 'react';
-
-export default function useClientes() {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default async function getClientes() {
+  let data = [];
+  let isLoading = true;
+  let error;
 
   const url = `http://localhost:8000/usuarios/`
 
-  useEffect(() => {
-    const traerUsuarios = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Error al obtener los clientes del banco');
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    traerUsuarios();
-  }, [url]);
-
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Error al obtener los clientes del banco');
+    }
+    const jsonData = await response.json();
+    data = jsonData;
+  } catch (e) {
+    error = e;
+  } finally {
+    isLoading = false;
+  }
+  
   return { data, isLoading, error };
 };
 
 //CONTROLAR CON MANU ESTO
-export function useNewUser(usuario) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+export async function nuevoUser(usuario) {
+  let isLoading = true
 
   const url = `http://localhost:8000/api/registro`
 
-  useEffect(() => {
-    const crearUsuario = async () => {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          body: {usuario}, //Se envía como un JSON
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            "X-CSRFToken":"H836YinrbSOaOkQIY79eNZwAoiWT94ug"
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Error al crear el usuario');
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body: {usuario}, //Se envía como un JSON
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
       }
-    };
-
-    crearUsuario();
-  }, [url]);
+    });
+    if (!response.ok) {
+      throw new Error('Error al crear el usuario');
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    isLoading = false;
+  }
 
   return { isLoading, error };
 };
 
-export function useEditUser(usuario) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+export async function editUser(usuario) {
+  let isLoading = true;
 
   const url = `http://localhost:8000/usuarios/${usuario.id}`
 
-  useEffect(() => {
-    const editarUsuario = async () => {
-      try {
-        const response = await fetch(url, {
-          method: 'PUT',
-          body: {usuario}, //Se envía como un JSON
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            "X-CSRFToken":"H836YinrbSOaOkQIY79eNZwAoiWT94ug"
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Error al actualizar el usuario');
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      body: {usuario}, //Se envía como un JSON
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
       }
-    };
+    });
+    if (!response.ok) {
+      throw new Error('Error al actualizar el usuario');
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+    isLoading = false;
+  }
 
-    editarUsuario();
-  }, [url]);
-
-  return { isLoading, error };
+  return { isLoading };
 };
 

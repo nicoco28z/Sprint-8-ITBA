@@ -1,63 +1,48 @@
-import { useState, useEffect } from 'react';
-
-export default function useTarjetas(clienteId) {
-  const [data, setData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+export default async function getTarjetas(clienteId) {
+  let data =[];
+  let isLoading =true;
+  let error;
 
   const url = `http://localhost:8000/tarjetas/${clienteId}`
 
-  useEffect(() => {
-    const traerTarjetas = async () => {
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error('Error al obtener las tarjetas');
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    traerTarjetas();
-  }, [url]);
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Error al obtener todas las tarjetas del cliente');
+    }
+    const jsonData = await response.json();
+    data = jsonData;
+  } catch (e) {
+    error = e;
+  } finally {
+    isLoading = false;
+  }
 
   return { data, isLoading, error };
 };
 
-export function useNewTarjeta(tarjeta, clienteId) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+export async function newTarjeta(tarjeta, clienteId) {
+  let isLoading =true;
+  let error;
 
   const url = `http://localhost:8000/tarjeta/${clienteId}/nueva`
 
-  useEffect(() => {
-    const crearTarjeta = async () => {
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          body: tarjeta, //Se envía como un JSON
-          headers: {
-            "Content-type": "application/json; charset=UTF-8",
-            "X-CSRFToken":"H836YinrbSOaOkQIY79eNZwAoiWT94ug"
-          }
-        });
-        if (!response.ok) {
-          throw new Error('Error al guardar la tarjeta');
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
+  try {
+    const response = await fetch(url, {
+      method: 'POST',
+      body: tarjeta, //Se envía como un JSON
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
       }
-    };
-
-    crearTarjeta();
-  }, [url]);
+    });
+    if (!response.ok) {
+      throw new Error('Error al guardar la tarjeta');
+    }
+  } catch (error) {
+    error = (error);
+  } finally {
+    isLoading = false;
+  }
 
   return { isLoading, error };
 };

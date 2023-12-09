@@ -1,6 +1,8 @@
 import { SimpleGrid, Select, Input, InputGroup, InputLeftAddon, Button} from "@chakra-ui/react"
 import { useState } from "react"
 
+//ESTO NO SE ESTA USANDO: ELIMINAR DSPS SI NO SE USA
+
 function AddAccount({cuentas, setCuentas, setActualizador}){
     let [select, setSelect] = useState()
     let [inpMon, setInpMon] = useState(0)
