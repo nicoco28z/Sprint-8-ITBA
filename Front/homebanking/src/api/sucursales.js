@@ -1,4 +1,4 @@
-export default async function useSucursales() {
+export default async function getSucursales() {
   let data =[];
   let isLoading =true;
   let error;

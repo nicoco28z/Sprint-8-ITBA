@@ -22,6 +22,7 @@ import { useAuth } from "../../hooks/useAuth";
 
 
 import { useNavigate } from "react-router-dom";
+import { nuevoUser } from "../../api/usuario";
 
 // Login box/space
 function RegisterArea() {
@@ -63,16 +64,27 @@ function RegisterHeader() {
 
 // Formulario de Login
 function RegisterForm() {
-  const [nombre, setNombre] = useState("");
-  const [apellido, setApellido] = useState("");
+  const [first_name, setNombre] = useState("");
+  const [last_name, setApellido] = useState("");
   const [dni, setDni] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [user, setUser] = useState("");
+  const [email, setCorreo] = useState("");
+  const [username, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  
+  const nav = useNavigate()
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
+
+    const {isLoading, error} = await nuevoUser({first_name:first_name, last_name:last_name, dni:dni, email:email, username:username, password:password})
+
+    if(error){
+     setError(true)
+    } else{
+      nav('/login')
+    }
+
   };
 
   return (
@@ -83,7 +95,7 @@ function RegisterForm() {
           <Input
             type="nombre"
             placeholder="Escribe tu Nombre"
-            value={nombre}
+            value={first_name}
             onChange={(e) => setNombre(e.target.value)}
           ></Input>
         </FormControl>
@@ -92,7 +104,7 @@ function RegisterForm() {
           <Input
             type="apellido"
             placeholder="Escribe tu Apellido"
-            value={apellido}
+            value={last_name}
             onChange={(e) => setApellido(e.target.value)}
           ></Input>
         </FormControl>
@@ -110,7 +122,7 @@ function RegisterForm() {
           <Input
             type="correo"
             placeholder="Escribe tu Correo"
-            value={correo}
+            value={email}
             onChange={(e) => setCorreo(e.target.value)}
           ></Input>
         </FormControl>
@@ -119,7 +131,7 @@ function RegisterForm() {
           <Input
             type="user"
             placeholder="Escribi tu nombre de Usuario"
-            value={user}
+            value={username}
             onChange={(e) => setUser(e.target.value)}
           ></Input>
         </FormControl>

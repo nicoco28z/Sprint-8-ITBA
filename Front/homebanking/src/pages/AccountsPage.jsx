@@ -24,7 +24,9 @@ export default function Account() {
   let [componenteCuentas, setComponenteCuentas] = useState([]);
   */
 
-  const { data, isLoading, error } = getCuentasCliente();
+  const cliente = sessionStorage.getItem('usuario')
+  
+  const { data, isLoading, error } = getCuentasCliente(cliente.id);
 
   /*
   --UN CLIENTE NO DEBERIA PODER BORRAR UNA CUENTA--
@@ -50,7 +52,7 @@ export default function Account() {
             <Icon as={AddIcon} />
           </AccordionButton>
           <AccordionPanel>
-          <Button bg='#349f77' onClick={() => newCuenta()}>Agregar Cuenta</Button>
+          <Button bg='#349f77' onClick={() => newCuenta(cliente.id)}>Agregar Cuenta</Button>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
