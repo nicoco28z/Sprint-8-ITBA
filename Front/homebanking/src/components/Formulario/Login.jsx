@@ -20,7 +20,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useAuth } from "../../hooks/useAuth";
 
-
 import { useNavigate } from "react-router-dom";
 
 // Login box/space
@@ -66,45 +65,53 @@ function LoginForm() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [error, setError] = useState(false);
-  const {signIn} = useAuth();
+  const { signIn } = useAuth();
 
-  let usuario
-  let isLoading = true
-  let apiError
-
-  const url = `http://localhost:8000/api/login/`
+  const url = `http://localhost:8000/api/login/`;
 
   const isLoged = async (user, psw) => {
+    let usuario;
+    let isLoading = true;
+    let apiError;
     try {
-      const response = await fetch(url, {body:{username:user, password:psw}});
+      const response = await fetch(url, {
+        body: { username: user, password: psw },
+      });
       if (!response.ok) {
-        throw new Error('Error al iniciar sesion');
+        throw new Error("Error al iniciar sesion");
       }
       const jsonusuario = await response.json();
       usuario = jsonusuario;
-    } catch (error) {
-      apiError = error;
+    } catch (e) {
+      apiError = e;
     } finally {
       isLoading = false;
     }
+    return { usuario, isLoading, apiError };
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    isLoged(user, password)
-    apiError ?? setError(true)
-    
-    if (usuario?.is_staff === 1 ) {
-    signIn()
-    navigate("/empleado")
+    const { usuario, isLoading, apiError } = await isLoged(e.user, e.password);
+
+    if (apiError || !usuario) {
+      return (
+        <Alert status="error">
+          <AlertIcon />
+          <AlertTitle>Ocurrio un error inesperado</AlertTitle>
+        </Alert>
+      );
     }
-    else {
-    signIn()
-    navigate("/home")
+
+    signIn(usuario);
+
+    if (usuario.is_staff === 1) {
+      navigate("/empleado");
+    } else {
+      navigate("/home");
     }
-  }
+  };
 
   return (
     <Box my={8} textAlign="left">
@@ -145,7 +152,9 @@ function LoginForm() {
         <br />
         <br />
         <Button bg="#349f77" width="full" mt="4">
-        <Link to="/register" bg="#349f77" fontWeight="bold" >Crea una cuenta</Link>
+          <Link to="/register" bg="#349f77" fontWeight="bold">
+            Crea una cuenta
+          </Link>
         </Button>
         {error && (
           <Alert status="error">

@@ -31,12 +31,15 @@ function useProvideAuth() {
   const [isLogged, setIsLogged] = useState(false);
 
   //Si el usuarioes válido, toma el valor de true
-  function signIn() {
+  function signIn(user) {
+    const usuario = { username: user.username, first_name: user.first_name, last_name: user.last_name, email: user.email, is_staff: user.is_staff, sucursal_id: user.sucursal_id, tipo_cliente_id: user.tipo_cliente_id };
+    sessionStorage.setItem('usuario', JSON.stringify(usuario));
     setIsLogged(true);
   }
 
   //Si el usuario se desloguea, se pone en false
   const signOut = () => {
+    sessionStorage.clear()
     setIsLogged(false);
   };
 
