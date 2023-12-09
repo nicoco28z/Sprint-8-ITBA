@@ -72,17 +72,17 @@ function LoginForm() {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const userValido = login(user, password)
+    // const userValido = login(user, password)
     error ?? setError(true)
   
-    if (data?.is_staff == 1 ) {
-    signIn()
-    navigate("/empleado")
-    }
-    else {
-    signIn()
-    navigate("/home")
-    }
+    // if (data?.is_staff == 1 ) {
+    // signIn()
+    // navigate("/empleado")
+    // }
+    // else {
+    // signIn()
+    // navigate("/home")
+    // }
   }
 
   return (

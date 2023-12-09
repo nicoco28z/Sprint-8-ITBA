@@ -6,7 +6,7 @@ from django.contrib.auth.admin import UserAdmin
 
 
 class SucursalAdmin(admin.ModelAdmin):
-    list_display = ('id_sucursal', 'direccion', 'provincia', 'ciudad')
+    list_display = ('id_sucursal', 'direccion', 'nombre', 'provincia', 'ciudad')
 
 class CustomUserAdmin(UserAdmin):
     list_display = ('username', 'email', 'dni', 'sucursal', 'is_staff', 'is_superuser', 'tipo_cliente')

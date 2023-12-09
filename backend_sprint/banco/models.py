@@ -36,7 +36,6 @@ class CustomUser(AbstractUser):
     tipo_cliente = models.ForeignKey(Tipo_Cliente, on_delete=models.CASCADE, null=True)
     groups = models.ManyToManyField(Group, related_name='customuser_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='customuser_set', blank=True)
-    tipo = models.ForeignKey(Tipo_Cliente, on_delete=models.DO_NOTHING, null=True) 
 
     def __str__(self):
         return self.username
@@ -52,10 +51,10 @@ class Cuenta(models.Model):
         return f"{self.nro_cuenta}: {self.saldo}"
     
 class Tarjeta(models.Model):
-    nro_tarjeta = models.DecimalField(primary_key=True, max_digits=15) #CONTROLAR LONGITUD EN FRONT
-    cvv = models.DecimalField(max_digits=3) #CONTROLAR LONGITUD EN FRONT
+    nro_tarjeta = models.DecimalField(primary_key=True, max_digits=15, decimal_places=0) #CONTROLAR LONGITUD EN FRONT
+    cvv = models.DecimalField(max_digits=3, decimal_places=0) #CONTROLAR LONGITUD EN FRONT
     cliente = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    banco = models.CharField(max_length=50) #Sería el banco de la tarjeta (Mastercard / Amex / Santadner / etc)
+    banco = models.CharField(max_length=50) #Sería el banco de la tarjeta (Mastercard / Amex / Santander / etc)
     fecha_emision = models.DateField()
     fecha_vencimiento = models.DateField()
 

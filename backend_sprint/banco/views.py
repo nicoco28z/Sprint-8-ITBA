@@ -117,7 +117,7 @@ class CuentaView(APIView):
             user = CustomUser.objects.get(id = idCliente)
             cuentas = len((Cuenta.objects.all(cliente=user)))
 
-            if (user.tipo.maxCuentas > cuentas):
+            if (user.tipo_cliente.maxCuentas > cuentas):
                 cuenta = Cuenta(saldo=0.0, cliente=user, principal=False)
                 cuenta.save()
                 return Response({'success' : 'Cuenta creada correctamente'}, status=status.HTTP_204_NO_CONTENT)
@@ -173,7 +173,7 @@ class TarjetaView(APIView):
             banco = req.data.get('banco')
             fecha_emision = req.data.get('fecha_emision')
             fecha_vencimiento = req.data.get('fecha_vencimiento')
-            if (user.tipo.maxTarjetas > tarjetas):
+            if (user.tipo_cliente.maxTarjetas > tarjetas):
                 tarjeta = Tarjeta(nro_tarjeta=nro_tarjeta, cvv=cvv, banco=banco, fecha_emision=fecha_emision, fecha_vencimiento=fecha_vencimiento, cliente=user)
                 tarjeta.save()
                 return Response({'success' : 'Tarjeta agregada correctamente'}, status=status.HTTP_204_NO_CONTENT)
