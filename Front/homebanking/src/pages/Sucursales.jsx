@@ -6,7 +6,8 @@ import {
   Table,
   Thead,
   Tr,
-  Th
+  Th,
+  Spinner,
 } from "@chakra-ui/react";
 import getSucursales from "../api/sucursales";
 
@@ -35,14 +36,18 @@ export default function Sucursales() {
             </Tr>
           </Thead>
           <Tbody>
-            {data.map((sucursal) => (
-              <Tr key={sucursal.id_sucursal}>
-                <Td>{sucursal.id_sucursal}</Td>
-                <Td>{sucursal.provincia}</Td>
-                <Td>{sucursal.ciudad}</Td>
-                <Td>{sucursal.direccion}</Td>
-              </Tr>
-            ))}
+            {isLoading ? (
+              <Spinner />
+            ) : (
+              data.map((sucursal) => (
+                <Tr key={sucursal.id_sucursal}>
+                  <Td>{sucursal.id_sucursal}</Td>
+                  <Td>{sucursal.provincia}</Td>
+                  <Td>{sucursal.ciudad}</Td>
+                  <Td>{sucursal.direccion}</Td>
+                </Tr>
+              ))
+            )}
           </Tbody>
         </Table>
       </CardBody>
