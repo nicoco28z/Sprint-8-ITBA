@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Box,
   Button,
   HStack,
   Heading,
-  SimpleGrid,
   VStack,
 } from "@chakra-ui/react";
 import PagosCard from "../components/PagosCard/PagosCard";

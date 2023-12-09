@@ -33,7 +33,13 @@ class TarjetaSerializer(serializers.ModelSerializer):
         model = Tarjeta
         fields = ('nro_tarjeta', 'cvv', 'cliente', 'banco', 'fecha_emision', 'fecha_vencimiento')
 
+class clientePrestamoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('first_name', 'last_name', 'id')
+
 class PrestamoSerializer(serializers.ModelSerializer):
+    cliente = clientePrestamoSerializer()
     class Meta:
         model = Prestamo
         fields = '__all__'
