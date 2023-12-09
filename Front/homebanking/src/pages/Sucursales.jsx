@@ -8,11 +8,16 @@ import {
   Box,
   Text,
 } from "@chakra-ui/react";
+import useSucursales from '../api/sucursales'
+
 
 export default function Sucursales() {
 
   //Esta página por el momento se encuentra hardcodeada
   //Está pensada para que los usuarios válidos puedan ver su información y editarla si asi lo quisiesen.
+
+  const {data} = useSucursales()
+  console.log(data)
 
   return (
     <Card maxWidth="400px" m="auto" height="70%" mt="5%" shadow="dark-lg">

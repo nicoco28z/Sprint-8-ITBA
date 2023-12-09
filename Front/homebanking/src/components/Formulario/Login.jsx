@@ -69,20 +69,41 @@ function LoginForm() {
   const [error, setError] = useState(false);
   const {signIn} = useAuth();
 
+  let usuario
+  let isLoading = true
+  let apiError
+
+  const url = `http://localhost:8000/api/login/`
+
+  const isLoged = async (user, psw) => {
+    try {
+      const response = await fetch(url, {body:{username:user, password:psw}});
+      if (!response.ok) {
+        throw new Error('Error al iniciar sesion');
+      }
+      const jsonusuario = await response.json();
+      usuario = jsonusuario;
+    } catch (error) {
+      apiError = error;
+    } finally {
+      isLoading = false;
+    }
+  };
+
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // const userValido = login(user, password)
-    error ?? setError(true)
-  
-    // if (data?.is_staff == 1 ) {
-    // signIn()
-    // navigate("/empleado")
-    // }
-    // else {
-    // signIn()
-    // navigate("/home")
-    // }
+    isLoged(user, password)
+    apiError ?? setError(true)
+    
+    if (usuario?.is_staff === 1 ) {
+    signIn()
+    navigate("/empleado")
+    }
+    else {
+    signIn()
+    navigate("/home")
+    }
   }
 
   return (
