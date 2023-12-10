@@ -102,9 +102,9 @@ const MyCarousel = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Compromiso con la excelencia: Nos esforzamos por la excelencia en cada aspecto de nuestro servicio, brindando a nuestros clientes una experiencia bancaria sin complicaciones y de calidad.
-                  Innovación constante: Estamos a la vanguardia de la tecnología financiera, ofreciendo soluciones innovadoras que hacen que la gestión financiera sea más eficiente y accesible.
-                  Enfoque personalizado: Reconocemos la singularidad de cada cliente. Nuestros expertos financieros están aquí para comprender y satisfacer sus necesidades específicas, proporcionando asesoramiento personalizado y soluciones a medida.
+                  <p>Compromiso con la excelencia: Nos esforzamos por la excelencia en cada aspecto de nuestro servicio, brindando a nuestros clientes una experiencia bancaria sin complicaciones y de calidad.</p>
+                  <p>Innovación constante: Estamos a la vanguardia de la tecnología financiera, ofreciendo soluciones innovadoras que hacen que la gestión financiera sea más eficiente y accesible.</p>
+                  <p>Enfoque personalizado: Reconocemos la singularidad de cada cliente. Nuestros expertos financieros están aquí para comprender y satisfacer sus necesidades específicas, proporcionando asesoramiento personalizado y soluciones a medida.</p>
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem>
