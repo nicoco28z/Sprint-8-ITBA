@@ -76,10 +76,7 @@ const MyCarousel = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo consequat.
+                  Somos PillarBank, una institución financiera comprometida con la excelencia y la confianza. Con una sólida trayectoria en el sector, nos enorgullece ofrecer soluciones financieras innovadoras y servicios de calidad que satisfacen las necesidades cambiantes de nuestros clientes.
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem>
@@ -92,10 +89,7 @@ const MyCarousel = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo consequat.
+                  En PillarBank, nos dedicamos a proporcionar servicios financieros integrales que abarcan desde cuentas de ahorro y corriente hasta productos de inversión y préstamos. Nuestra misión es ser el socio financiero de confianza para individuos y empresas, brindando soluciones personalizadas y adaptadas a sus metas y circunstancias.
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem>
@@ -108,10 +102,9 @@ const MyCarousel = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo consequat.
+                  Compromiso con la excelencia: Nos esforzamos por la excelencia en cada aspecto de nuestro servicio, brindando a nuestros clientes una experiencia bancaria sin complicaciones y de calidad.
+                  Innovación constante: Estamos a la vanguardia de la tecnología financiera, ofreciendo soluciones innovadoras que hacen que la gestión financiera sea más eficiente y accesible.
+                  Enfoque personalizado: Reconocemos la singularidad de cada cliente. Nuestros expertos financieros están aquí para comprender y satisfacer sus necesidades específicas, proporcionando asesoramiento personalizado y soluciones a medida.
                 </AccordionPanel>
               </AccordionItem>
               <AccordionItem>
@@ -124,10 +117,7 @@ const MyCarousel = () => {
                   </AccordionButton>
                 </h2>
                 <AccordionPanel pb={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                  veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                  commodo consequat.
+                  Aspiramos a ser líderes en el sector financiero, siendo reconocidos por nuestra integridad, innovación y compromiso con la satisfacción del cliente. Buscamos contribuir al bienestar económico de nuestros clientes y la comunidad en general, fomentando un crecimiento sostenible y responsable.
                 </AccordionPanel>
               </AccordionItem>
               </Accordion>
