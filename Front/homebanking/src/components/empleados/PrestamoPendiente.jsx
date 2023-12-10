@@ -26,8 +26,10 @@ export default function PrestamoPendiente({Prestamo}){
                 </AccordionButton>
                 <AccordionPanel>
                     <Box textAlign='right'>
-                        <Button bg="#349f77" mr="3" onClick={() => editarPrestamo(Prestamo.id_prestamo, "aprobar")}>Aprobar</Button>
-                        <Button bg="#349f77" onClick={() => editarPrestamo(Prestamo.id_prestamo, "desaprobar")}>Desaprobar</Button>
+                        <Button bg="#349f77" mr="3" onClick={() => {editarPrestamo(Prestamo.id_prestamo, "aprobar")
+                            window.location.reload(false)}}>Aprobar</Button>
+                        <Button bg="#349f77" onClick={() => {editarPrestamo(Prestamo.id_prestamo, "desaprobar")
+                            window.location.reload(false)}}>Desaprobar</Button>
                     </Box>
                 </AccordionPanel>
             </AccordionItem>

@@ -21,11 +21,10 @@ export default async function getClientes() {
   return { data, isLoading, error };
 };
 
-//CONTROLAR CON MANU ESTO
 export async function nuevoUser(usuario) {
-  let isLoading = true
+  let errores = false
 
-  const url = `http://localhost:8000/api/registro`
+  const url = `http://localhost:8000/api/registro/`
 
   try {
     const response = await fetch(url, {
@@ -40,17 +39,16 @@ export async function nuevoUser(usuario) {
     }
   } catch (error) {
     console.log(error);
-  } finally {
-    isLoading = false;
+    errores = error
   }
 
-  return { isLoading, error };
+  return { errores };
 };
 
 export async function editUser(usuario) {
   let isLoading = true;
 
-  const url = `http://localhost:8000/usuarios/${usuario.id}`
+  const url = `http://localhost:8000/usuarios/${usuario.id}/`
 
   try {
     const response = await fetch(url, {
