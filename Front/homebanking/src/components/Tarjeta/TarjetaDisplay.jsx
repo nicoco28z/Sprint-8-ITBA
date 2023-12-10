@@ -1,5 +1,4 @@
-import { SimpleGrid, Stack, Stat, StatLabel, StatNumber, StatHelpText, Button, Divider } from '@chakra-ui/react'
-import { InfoOutlineIcon } from '@chakra-ui/icons'
+import { SimpleGrid, Stack, Stat, StatHelpText } from '@chakra-ui/react'
 
 import Tarjeta from './Tarjeta'
 

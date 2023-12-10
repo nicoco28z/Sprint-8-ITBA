@@ -3,7 +3,6 @@ import {
   Grid,
   GridItem,
   Heading,
-  Text,
   Button,
   Accordion,
   AccordionIcon,

@@ -1,7 +1,5 @@
 export default async function getTarjetas(clienteId) {
   let data =[];
-  let isLoading =true;
-  let error;
 
   const url = `http://localhost:8000/tarjetas/${clienteId}/`
 
@@ -13,12 +11,9 @@ export default async function getTarjetas(clienteId) {
     const jsonData = await response.json();
     data = jsonData;
   } catch (e) {
-    error = e;
-  } finally {
-    isLoading = false;
+    console.log(e);
   }
-
-  return { data, isLoading, error };
+  return data;
 };
 
 export async function newTarjeta(tarjeta, clienteId) {
@@ -39,7 +34,7 @@ export async function newTarjeta(tarjeta, clienteId) {
       throw new Error('Error al guardar la tarjeta');
     }
   } catch (error) {
-    error = (error);
+    console.log(error);
   } finally {
     isLoading = false;
   }

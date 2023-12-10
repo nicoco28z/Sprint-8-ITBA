@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Link, Spacer, Text, Image, Center } from "@chakra-ui/react";
+import { Box, Flex, Link, Spacer, Image } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import DropdownMenu from "../DropdownMenu/DropdownMenu";
 import { Outlet } from "react-router-dom";

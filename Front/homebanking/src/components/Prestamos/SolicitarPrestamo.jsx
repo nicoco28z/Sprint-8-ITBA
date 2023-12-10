@@ -2,25 +2,15 @@ import {
     Flex,
     Box,
     Heading,
-    Text,
-    Link,
+
     FormControl,
     FormLabel,
     Input,
     Button,
-    Checkbox,
-    Alert,
-    AlertDescription,
-    AlertIcon,
-    AlertTitle,
     HStack,
   } from "@chakra-ui/react";
   
   import { useState } from "react";
-  import { useAuth } from "../../hooks/useAuth";
-  
-  
-  import { useNavigate } from "react-router-dom";
   
   // Login box/space
   export default function SolicitarPrestamo() {

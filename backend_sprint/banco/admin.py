@@ -20,6 +20,9 @@ class CustomUserAdmin(UserAdmin):
 class CuentaAdmin(admin.ModelAdmin):
     list_display = ('nro_cuenta', 'saldo', 'cliente')
 
+class TarjetaAdmin(admin.ModelAdmin):
+    list_display = ('nro_tarjeta', 'cvv', 'cliente', 'banco', 'fecha_emision', 'fecha_vencimiento')
+
 class PrestamoAdmin(admin.ModelAdmin):
     list_display = ('id_prestamo', 'fecha', 'monto', 'estado', 'cliente', 'cuenta')
     search_fields = ('id_prestamo', 'cliente__username') 
@@ -32,3 +35,4 @@ admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(Cuenta, CuentaAdmin)
 admin.site.register(Prestamo, PrestamoAdmin)
 admin.site.register(Tipo_Cliente, TipoClienteAdmin)
+admin.site.register(Tarjeta, TarjetaAdmin)

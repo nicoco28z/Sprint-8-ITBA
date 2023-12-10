@@ -11,14 +11,19 @@ import {
   AlertIcon,
   AlertTitle,
   HStack,
+  Menu, 
+  MenuButton, 
+  MenuList, 
+  MenuItem
 } from "@chakra-ui/react";
-import DropdownMenu from "./DropdownSucursales";
+import { ChevronDownIcon } from "@chakra-ui/icons";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 import { useNavigate } from "react-router-dom";
 import { nuevoUser } from "../../api/usuario";
+import getSucursales from "../../api/sucursales"
 
 // Login box/space
 function RegisterArea() {
@@ -51,8 +56,6 @@ export default RegisterArea;
 
 // Encabezado
 
-const { data, isLoading, error } = getSucursales();
-
 function RegisterHeader() {
   return (
     <Box textAlign="center">
@@ -70,20 +73,29 @@ function RegisterForm() {
   const [username, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const [sucursal, setSucursal] = useState()
   
   const nav = useNavigate()
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const {error} = await nuevoUser({first_name:first_name, last_name:last_name, dni:dni, email:email, username:username, password:password})
+    await nuevoUser({"first_name":first_name, "last_name":last_name, "dni":dni, "email":email, "username":username, "password":password, "sucursal":sucursal})
 
     if(error){
      setError(true)
     } else{
       nav('/login')
     }
+  };
+  const [data, setData] = useState([])
+  useEffect(() =>{
+    const obtenerSucursales = async () => setData(await getSucursales())
+    obtenerSucursales()
+  },[])
 
+  const handleSelectOption = (option) => {
+    setSucursal(option);
   };
 
   return (
@@ -143,9 +155,16 @@ function RegisterForm() {
             onChange={(e) => setPassword(e.target.value)}
           ></Input>
         </FormControl>
-        <FormControl isRequired>
+        <FormControl onChange={e => console.log(e)} isRequired>
           <FormLabel>Sucursal</FormLabel>
-          <DropdownMenu />
+          <Menu>
+            <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+              {sucursal || "Seleccionar Sucursal"}
+            </MenuButton>
+            <MenuList>
+              {data?.map(s => <MenuItem key={s.id_sucursal} onClick={() => handleSelectOption(s.id_sucursal)}>{s.id_sucursal} | {s.nombre}</MenuItem>)}
+            </MenuList>
+          </Menu>
         </FormControl>
 
         <HStack justifyContent="space-between" mt={4}>

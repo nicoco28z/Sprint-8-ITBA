@@ -1,5 +1,4 @@
-import { Card, Stack, Image } from "@chakra-ui/react";
-import RegisterArea from "../components/Formulario/Register";
+import { Stack } from "@chakra-ui/react";
 import SolicitarPrestamo from "../components/Prestamos/SolicitarPrestamo";
 
 export default function Prestamos() {

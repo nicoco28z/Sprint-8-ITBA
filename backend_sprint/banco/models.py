@@ -33,7 +33,7 @@ class Tipo_Cliente(models.Model):
 class CustomUser(AbstractUser):
     dni = models.CharField(max_length=8, unique=True)
     sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE, null=True, blank=True)
-    tipo_cliente = models.ForeignKey(Tipo_Cliente, on_delete=models.CASCADE, null=True)
+    tipo_cliente = models.ForeignKey(Tipo_Cliente, on_delete=models.CASCADE, null=True, default=1)
     groups = models.ManyToManyField(Group, related_name='customuser_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='customuser_set', blank=True)
 

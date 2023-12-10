@@ -22,27 +22,21 @@ export default async function getClientes() {
 };
 
 export async function nuevoUser(usuario) {
-  let errores = false
-
   const url = `http://localhost:8000/api/registro/`
 
-  try {
-    const response = await fetch(url, {
-      method: 'POST',
-      body: {usuario}, //Se envía como un JSON
-      headers: {
-        "Content-type": "application/json; charset=UTF-8",
-      }
-    });
-    if (!response.ok) {
-      throw new Error('Error al crear el usuario');
-    }
-  } catch (error) {
-    console.log(error);
-    errores = error
+  const jsonUser = JSON.stringify(usuario)
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+
+  const requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: jsonUser,
+    redirect: 'follow'
   }
 
-  return { errores };
+  fetch(url, requestOptions)
+    .then(response => response)
 };
 
 export async function editUser(usuario) {

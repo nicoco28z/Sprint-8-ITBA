@@ -14,6 +14,7 @@ import RegisterPage from "./pages/RegisterPage";
 import Sucursales from "./pages/Sucursales";
 import Prestamos from "./pages/Prestamos";
 import Empleado from "./pages/EmpleadoPage";
+import TarjetasPage from "./pages/TarjetasPage";
 
 //Rutas para la navegacion
 const routes = [
@@ -48,6 +49,10 @@ const routes = [
       {
         path: "prestamos",
         element: <Prestamos />,
+      },
+      {
+        path: "tarjetas",
+        element: <TarjetasPage />
       },
       {
         path: "empleado",
