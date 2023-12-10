@@ -31,4 +31,10 @@ Es importante destacar que previamente debes contar con un entorno virtual con D
 7. Ejecutar el comando `npm i` para obtener todas las dependencias.
 8. Ejecutar el comando `npm start` para iniciar el proyecto en React.
 
+### Iniciar sesión
+1. Empleado: usuario: ManuAdmin contraseña: manuadmin
+2. Usuario: usuario:ElNene contraseña: loren1234
+Se pueden crear igualmente más clientes, pero solo un administrador de base de datos podría crear más empleados. Esto es parte de una decisión de diseño.
+
+
 ¡Gracias por revisar nuestro proyecto! Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros.
