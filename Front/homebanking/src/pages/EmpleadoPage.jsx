@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { fetchPrestamos } from "../api/prestamo";
 
-import PrestamoPendiente from "../components/empleados/PrestamoPendiente";
-import PrestamoAprobado from "../components/empleados/PrestamoAprobado";
-import PrestamoDesaprobado from "../components/empleados/PrestamoDesaprobado";
+import PrestamoPendiente from "../components/Empleados/PrestamoPendiente";
+import PrestamoAprobado from "../components/Empleados/PrestamoAprobado";
+import PrestamoDesaprobado from "../components/Empleados/PrestamoDesaprobado";
 
 export default function Empleado() {
     // eslint-disable-next-line no-unused-vars

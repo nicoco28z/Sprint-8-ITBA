@@ -18,5 +18,6 @@ urlpatterns = [
     path('prestamos/', ListarPrestamosView.as_view(), name='listar_prestamos'),
     path('prestamo/solicitar/', SolicitarPrestamoView.as_view(), name='solicitar_prestamo'),
     path('prestamo/aprobar/<int:pk>/', AprobarPrestamoView.as_view(), name='aprobar_prestamo'),
-    path('prestamo/desaprobar/<int:pk>/', DesaprobarPrestamoView.as_view(), name='desaprobar_prestamo')
+    path('prestamo/desaprobar/<int:pk>/', DesaprobarPrestamoView.as_view(), name='desaprobar_prestamo'),
+    path('sucursales/', SucursalesView.as_view(), name='sucursales'),
 ]

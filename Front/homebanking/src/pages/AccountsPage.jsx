@@ -8,7 +8,6 @@ import {
   AccordionItem,
   AccordionButton,
   AccordionPanel,
-  Spinner,
   Button,
 } from "@chakra-ui/react";
 import { AddIcon } from "@chakra-ui/icons";
@@ -16,6 +15,7 @@ import CardAccount from "../components/Accounts/AccountCard";
 //import AddAccount from "../components/Accounts/AddAccount";
 //import { useEffect, useState } from "react";
 import { getCuentasCliente, newCuenta } from "../api/cuentas";
+import { useEffect, useState } from "react";
 
 export default function Account() {
   /*
@@ -25,9 +25,13 @@ export default function Account() {
   */
 
   const cliente = sessionStorage.getItem('usuario')
-  
-  const { data, isLoading, error } = getCuentasCliente(cliente.id);
+  const usuario = cliente ? JSON.parse(cliente) : {};
 
+  const [data, setData] = useState()
+  useEffect(() =>{
+    const obtenerCuenta = async () => setData(await getCuentasCliente(usuario.id));
+    obtenerCuenta()
+  }, [usuario.id])
   /*
   --UN CLIENTE NO DEBERIA PODER BORRAR UNA CUENTA--
   useEffect(() => {
@@ -39,7 +43,6 @@ export default function Account() {
 
   return (
     <Stack align="center" width="90%" margin="1" border="0.5px">
-      <Button onClick={() => console.log(data)}>Mostrar cuentas</Button>
       <Accordion allowToggle width="95%">
         <AccordionItem>
           <AccordionButton
@@ -57,17 +60,7 @@ export default function Account() {
         </AccordionItem>
       </Accordion>
       <Flex wrap="wrap" gap="15px" justify="center" width="100%">
-        {isLoading ? (
-          <Spinner
-            thickness="4px"
-            speed="0.5s"
-            emptyColor="gray.200"
-            color="blue.500"
-            size="lg"
-          />
-        ) : (
-          renderAccounts(data? data : [])
-        )}
+        {renderAccounts(data? data : [])}
       </Flex>
     </Stack>
   );

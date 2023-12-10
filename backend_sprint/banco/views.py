@@ -56,6 +56,7 @@ class UserDetailView(View):
 
 class LoginView(APIView):
     def post(self, req):
+        print(req.data)
         username = req.data.get('username')
         password = req.data.get('password')
 
@@ -232,3 +233,12 @@ class DesaprobarPrestamoView(APIView):
     
     def get_prestamo(self, pk):
         return Prestamo.objects.get(pk=pk)
+
+class SucursalesView(APIView):
+    def get(self, req):
+        try:
+            sucursales = Sucursal.objects.all()
+            serializer = SucursalSerializer(sucursales, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except:
+            return HttpResponseNotFound({'error' : 'Error al buscar sucursales'})

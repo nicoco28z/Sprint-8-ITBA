@@ -23,10 +23,8 @@ export default async function getCuentas() {
 
 export async function getCuentasCliente(idCliente) {
   let data = [];
-  let isLoading = true;
-  let error;
 
-  const url = `http://localhost:8000/cuentas/cliente/${idCliente}`
+  const url = `http://localhost:8000/cuentas/cliente/${idCliente}/`
 
   try {
     const response = await fetch(url);
@@ -36,19 +34,17 @@ export async function getCuentasCliente(idCliente) {
     const jsonData = await response.json();
     data = jsonData;
   } catch (e) {
-    error = e;
-  } finally {
-    isLoading = false;
+    console.log(e);
   }
 
-  return { data, isLoading, error };
+  return data;
 };
 
 export async function newCuenta(clienteId) {
   let isLoading = true;
   let error;
 
-  const url = `http://localhost:8000/cuentas/${clienteId}/nueva`
+  const url = `http://localhost:8000/cuentas/${clienteId}/nueva/`
 
   
   try {

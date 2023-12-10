@@ -2,13 +2,10 @@ import {
   Flex,
   Box,
   Heading,
-  Text,
-  Link,
   FormControl,
   FormLabel,
   Input,
   Button,
-  Checkbox,
   Alert,
   AlertDescription,
   AlertIcon,
@@ -18,7 +15,6 @@ import {
 import DropdownMenu from "./DropdownSucursales";
 
 import { useState } from "react";
-import { useAuth } from "../../hooks/useAuth";
 
 
 import { useNavigate } from "react-router-dom";
@@ -80,7 +76,7 @@ function RegisterForm() {
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const {isLoading, error} = await nuevoUser({first_name:first_name, last_name:last_name, dni:dni, email:email, username:username, password:password})
+    const {error} = await nuevoUser({first_name:first_name, last_name:last_name, dni:dni, email:email, username:username, password:password})
 
     if(error){
      setError(true)

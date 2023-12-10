@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 const DropdownMenu = () => {
+  // eslint-disable-next-line no-unused-vars
   const { isLogged, signOut } = useAuth();
-
+  const user = sessionStorage.getItem("usuario");
+  const usuario = user ? JSON.parse(user) : {};
   return (
-    <Menu >
+    <Menu>
       <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
         Menu
       </MenuButton>
@@ -16,28 +18,27 @@ const DropdownMenu = () => {
         <Link to="/home">
           <MenuItem>Inicio</MenuItem>
         </Link>
-        <Link to="/perfil">
-          <MenuItem>Mi perfil</MenuItem>
-        </Link>
-        <Link to="/transferencias">
-          <MenuItem>Transferencias</MenuItem>
-        </Link>
-        <Link to="/pagos">
-          <MenuItem>Pagos</MenuItem>
-        </Link>
-        <Link to="/herramientas">
-          <MenuItem>Herramientas</MenuItem>
-        </Link>
-        <Link to="/cuentas">
-          <MenuItem>Cuentas</MenuItem>
-        </Link>
-        <Link to="/sucursales">
-          <MenuItem>Sucursales</MenuItem>
-        </Link>
-        <Link to="/prestamos">
-          <MenuItem>Prestamos</MenuItem>
-        </Link>
-        {isLogged ? (
+        {!usuario.is_staff ? (
+          <>
+            <Link to="/perfil">
+              <MenuItem>Mi perfil</MenuItem>
+            </Link>
+            <Link to="/cuentas">
+              <MenuItem>Cuentas</MenuItem>
+            </Link>
+            <Link to="/prestamos">
+              <MenuItem>Prestamos</MenuItem>
+            </Link>
+            <Link to="/sucursales">
+              <MenuItem>Sucursales</MenuItem>
+            </Link>
+            <Link to="/herramientas">
+              <MenuItem>Herramientas</MenuItem>
+            </Link>
+          </>
+        ) : null}
+
+        {usuario ? (
           <Link to="/home" onClick={() => signOut()}>
             <MenuItem>Cerrar sesión</MenuItem>
           </Link>

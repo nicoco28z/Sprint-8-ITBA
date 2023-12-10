@@ -10,12 +10,8 @@ import {
 } from "@chakra-ui/react";
 
 export default function PerfilPage() {
-  
-  const usuario = sessionStorage.getItem('usuario')
-
-  //Esta página por el momento se encuentra hardcodeada
-  //Está pensada para que los usuarios válidos puedan ver su información y editarla si asi lo quisiesen.
-
+  const user = sessionStorage.getItem('usuario')
+  const usuario = user ? JSON.parse(user) : {};
   return (
     <Card maxWidth="400px" m="auto" height="70%" mt="5%" borderRadius={4} borderWidth={1} boxShadow="dark-lg"> 
       <CardHeader>

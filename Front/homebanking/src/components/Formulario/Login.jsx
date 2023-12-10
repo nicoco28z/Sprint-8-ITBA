@@ -2,7 +2,6 @@ import {
   Flex,
   Box,
   Heading,
-  Text,
   FormControl,
   FormLabel,
   Input,
@@ -64,6 +63,7 @@ function LoginHeader() {
 function LoginForm() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false)
   const navigate = useNavigate();
   const { signIn } = useAuth();
@@ -72,12 +72,16 @@ function LoginForm() {
 
   const isLoged = async (user, psw) => {
     let usuario;
-    let isLoading = true;
     let apiError;
+    const datos = JSON.stringify({
+      "username": user,
+      "password": psw
+    })
     try {
       const response = await fetch(url, {
-        body: { username: user, password: psw },
-         headers: {
+        method: 'POST',
+        body: datos,
+        headers: {
           "Content-type": "application/json; charset=UTF-8",
         }
       });
@@ -87,17 +91,15 @@ function LoginForm() {
       const jsonusuario = await response.json();
       usuario = jsonusuario;
     } catch (e) {
+      console.log(e);
       apiError = e;
-    } finally {
-      isLoading = false;
     }
-    return { usuario, isLoading, apiError };
+    return { usuario, apiError };
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    const { usuario, isLoading, apiError } = await isLoged(user, password);
+    const { usuario, apiError } = await isLoged(user, password);
 
     if (apiError || !usuario) {
       setError(true)
@@ -105,7 +107,7 @@ function LoginForm() {
 
     signIn(usuario);
 
-    if (usuario.is_staff === 1) {
+    if (usuario.is_staff === true) {
       navigate("/empleado");
     } else {
       navigate("/home");
