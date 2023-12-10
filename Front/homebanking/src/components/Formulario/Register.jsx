@@ -54,6 +54,9 @@ function RegisterArea() {
 export default RegisterArea;
 
 // Encabezado
+
+const { data, isLoading, error } = getSucursales();
+
 function RegisterHeader() {
   return (
     <Box textAlign="center">

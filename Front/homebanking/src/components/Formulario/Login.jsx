@@ -64,6 +64,7 @@ function LoginHeader() {
 function LoginForm() {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false)
   const navigate = useNavigate();
   const { signIn } = useAuth();
 
@@ -76,6 +77,9 @@ function LoginForm() {
     try {
       const response = await fetch(url, {
         body: { username: user, password: psw },
+         headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        }
       });
       if (!response.ok) {
         throw new Error("Error al iniciar sesion");
@@ -93,15 +97,10 @@ function LoginForm() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const { usuario, isLoading, apiError } = await isLoged(e.user, e.password);
+    const { usuario, isLoading, apiError } = await isLoged(user, password);
 
     if (apiError || !usuario) {
-      return (
-        <Alert status="error">
-          <AlertIcon />
-          <AlertTitle>Ocurrio un error inesperado</AlertTitle>
-        </Alert>
-      );
+      setError(true)
     }
 
     signIn(usuario);

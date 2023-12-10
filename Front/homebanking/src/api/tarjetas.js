@@ -3,7 +3,7 @@ export default async function getTarjetas(clienteId) {
   let isLoading =true;
   let error;
 
-  const url = `http://localhost:8000/tarjetas/${clienteId}`
+  const url = `http://localhost:8000/tarjetas/${clienteId}/`
 
   try {
     const response = await fetch(url);
@@ -25,7 +25,7 @@ export async function newTarjeta(tarjeta, clienteId) {
   let isLoading =true;
   let error;
 
-  const url = `http://localhost:8000/tarjeta/${clienteId}/nueva`
+  const url = `http://localhost:8000/tarjeta/${clienteId}/nueva/`
 
   try {
     const response = await fetch(url, {
